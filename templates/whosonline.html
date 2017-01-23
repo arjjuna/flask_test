@@ -1,0 +1,16 @@
+{% extends "bootstrap/base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}Users online{% endblock %}
+
+{% block content %}
+	<div class="row ">
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+			<p>Users online:</p>
+			{% for u in users %}
+				<p>{{ u.name }}</p>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

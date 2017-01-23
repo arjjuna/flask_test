@@ -1,0 +1,31 @@
+{% extends "bootstrap/base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block title %}JSON API{% endblock %}
+
+{% block content %}
+	<div class="row ">
+		<div class="col-xs-12 col-sm-6 col-md-6 col-lg-4" id="onlineUsers">
+			
+		</div>
+	</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+    <!-- jQuery -->
+	<script type="text/javascript" src="{{ url_for('static', filename='bower_components/jquery/dist/jquery.js') }}"></script>
+
+	<script>
+		function GetOnlineUsers()
+		{
+			$.getJSON( "/api/online_users", function( data ) {
+				$( "#onlineUsers" ).text(JSON.stringify(data, null, 2));
+				console.log(data);
+			})
+		};
+		setInterval(GetOnlineUsers, 100000);
+		GetOnlineUsers()
+	</script>
+{% endblock %}
